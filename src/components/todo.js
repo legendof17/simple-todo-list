@@ -5,10 +5,18 @@ export class Todo extends Component {
         super(props)
         this.state = {
             text: '',
-            items: []
+            items: [{
+                text : 'Hello',
+                id : Date.now()
+            },
+            {
+                text : 'World',
+                id : Date.now()
+            }]
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.clearTodoList = this.clearTodoList.bind(this)
     }
 
     handleChange(event) {
@@ -32,17 +40,25 @@ export class Todo extends Component {
         }))
     }
 
+    clearTodoList(event) {
+        event.preventDefault()
+        this.setState({
+            items : []
+        })
+    }
+
     render() {
         return (
             <div>
-                <h1>TODO APP:</h1>
+                <h1>TODO APP</h1>
                 <div>
                    <TodoList item={this.state.items} />
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="id">Input Action:</label><br />
                     <input id="id" onChange={this.handleChange} value={this.state.text} /><br />
-                    <button>Add</button>
+                    <button>Add</button>{'  '}
+                    <button onClick={this.clearTodoList}>Clear</button>
                 </form>
             </div>
         )
