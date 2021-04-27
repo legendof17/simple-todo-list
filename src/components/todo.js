@@ -37,13 +37,7 @@ export class Todo extends Component {
             <div>
                 <h1>TODO APP:</h1>
                 <div>
-                    <ul>
-                        {this.state.items.map(
-                            item => (
-                                <li key={item.id}>{item.text}</li>
-                            )
-                        )}
-                    </ul>
+                   <TodoList item={this.state.items} />
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="id">Input Action:</label><br />
@@ -51,6 +45,20 @@ export class Todo extends Component {
                     <button>Add</button>
                 </form>
             </div>
+        )
+    }
+}
+
+class TodoList extends React.Component {
+    render() {
+        return(
+            <ul>
+                {this.props.item.map(
+                    item => (
+                        <li key={item.id}>{item.text}</li>
+                    )
+                )}
+            </ul>
         )
     }
 }
